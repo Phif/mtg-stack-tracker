@@ -20,6 +20,7 @@ html {
   --secondary-button-text-color: #ffffff;
   height: 100%;
   color: var(--main-text-color);
+  overscroll-behavior-y: none;
 }
 
 body {
