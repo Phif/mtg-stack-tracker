@@ -15,6 +15,7 @@ body {
   margin: 0 auto;
   padding: 0 20px;
   background: rgb(24, 14, 48);
+  overscroll-behavior-y: none;
 }
 
 h1 {
