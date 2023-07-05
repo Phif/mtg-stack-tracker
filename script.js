@@ -129,22 +129,13 @@ function createCardElement(cardData) {
     <img src="${cardData.image_uris.art_crop}" alt="${cardData.name}">
     <div class="card-details">
       <h3 class="card-name">${cardData.name}</h3>
-      <p class="card-oracle-text">${replaceManaSymbols(cardData.oracle_text)}</p>
     </div>
     <button class="resolve-card-button" onclick="this.parentNode.remove()">
       <span class="material-symbols-rounded">check_circle</span>
     </button>
   `;
-  return cardElement;
-}
 
-function replaceManaSymbols(text) {
-  const manaSymbolRegex = /{([^}]+)}/g;
-  const manaSymbolsInText = text.match(manaSymbolRegex) || [];
-  for (let i = 0; i < manaSymbolsInText.length; i++) {
-    text = text.replace(manaSymbolsInText[i], `<i class="ms ms-${manaSymbolsInText[i].replace('{', '').replace('}', '').toLowerCase()}"></i>`)
-  }
-  return text;
+  return cardElement;
 }
 
 function emptyCardContainer() {
