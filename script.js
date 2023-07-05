@@ -148,6 +148,6 @@ var el = document.getElementById('card-container');
 var sortable = new Sortable(el, {
   animation: 150,
   ghostClass: 'ghost-class',
-  delay: 100, 
+  delay: 50, 
 	delayOnTouchOnly: true
 });
