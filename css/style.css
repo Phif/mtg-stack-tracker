@@ -1,25 +1,49 @@
 * {
-  font-family: Arial, Helvetica, sans-serif;
+  box-sizing: border-box;
+  font-family: "Lato";
+}
+
+html {
+  height: 100%;
+  color: white;
+}
+
+body {
+  width: 100%;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 20px;
+  background: rgb(60,18,110);
+  background: linear-gradient(0deg, rgba(60,18,110,1) 0%, rgba(17,0,29,1) 100%);
+}
+
+h1 {
+  text-align: center;
 }
 
 .search-container {
+  display: flex;
   margin-bottom: 20px;
   position: relative;
 }
 
 #search-input {
   padding: 10px;
-  font-size: 16px;
-  border: none;
-  border-radius: 4px;
-  width: 300px;
+  border-color: lightgray;
+  border-radius: 10px;
+  flex-grow: 1;
+  margin-right: 10px;
 }
 
 #search-button {
+  display: flex;
+  flex-flow: row nowrap ;
+  align-items: center;
+  gap: 10px;
+  justify-content: center;
   padding: 10px 20px;
-  font-size: 16px;
   border: none;
-  border-radius: 4px;
+  border-radius: 10px;
   background-color: #4CAF50;
   color: white;
   cursor: pointer;
@@ -27,11 +51,12 @@
 
 .autocomplete-items {
   position: absolute;
-  width: 100%;
+  top: 100%;
+  width: max-content;
   max-height: 200px;
   overflow-y: auto;
-  background-color: #f1f1f1;
-  border-radius: 4px;
+  background-color: #eba7df;
+  border-radius: 10px;
   z-index: 1;
 }
 
@@ -70,6 +95,7 @@
 }
 
 .card-details {
+  flex-grow: 1;
   display: flex;
   flex-direction: column;
   gap: 10px;
@@ -84,19 +110,9 @@
   margin: 0;
 }
 
-/* .mana-symbol {
-  display: inline-block;
-  font-family: 'mana';
-  font-size: 16px;
-  font-style: normal;
-  font-weight: normal;
-  text-align: center;
-  text-decoration: none;
-  text-transform: none;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  speak: none;
-} */
+.resolve-card-button {
+  margin-right: 10px;
+}
 
 .ms {
   font-size: 0.8em !important;

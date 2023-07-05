@@ -115,7 +115,6 @@ function fetchCard(cardName) {
     .then(response => response.json())
     .then(data => {
       const cardElement = createCardElement(data);
-      console.log(cardElement)
       cardContainer.insertBefore(cardElement, cardContainer.firstChild);
     })
     .catch(error => {
@@ -132,6 +131,7 @@ function createCardElement(cardData) {
       <h3 class="card-name">${cardData.name}</h3>
       <p class="card-oracle-text">${replaceManaSymbols(cardData.oracle_text)}</p>
     </div>
+    <button class="resolve-card-button" onclick="this.parentNode.remove()">Resolve</button>
   `;
   return cardElement;
 }
@@ -139,10 +139,14 @@ function createCardElement(cardData) {
 function replaceManaSymbols(text) {
   const manaSymbolRegex = /{([^}]+)}/g;
   const manaSymbolsInText = text.match(manaSymbolRegex) || [];
-  console.log(manaSymbolsInText)
   for (let i = 0; i < manaSymbolsInText.length; i++) {
     text = text.replace(manaSymbolsInText[i], `<i class="ms ms-${manaSymbolsInText[i].replace('{', '').replace('}', '').toLowerCase()}"></i>`)
-    console.log(manaSymbolsInText[i])
   }
   return text;
 }
+
+var el = document.getElementById('card-container');
+var sortable = new Sortable(el, {
+  animation: 150,
+  ghostClass: 'blue-background-class'
+});
