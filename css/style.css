@@ -35,29 +35,13 @@ h1 {
   margin-right: 10px;
 }
 
-#empty-stack-button {
-  display: flex;
-  flex-flow: row nowrap ;
-  align-items: center;
-  width: 100%;
-  gap: 10px;
-  justify-content: center;
-  padding: 10px 20px;
-  border: none;
-  border-radius: 10px;
-  background-color: #af4c4c;
-  color: white;
-  font-weight: bold;
-  cursor: pointer;
-}
-
 #search-button {
   display: flex;
   flex-flow: row nowrap ;
   align-items: center;
   gap: 10px;
   justify-content: center;
-  padding: 10px 20px;
+  padding: 10px;
   border: none;
   border-radius: 10px;
   background-color: #4CAF50;
@@ -150,4 +134,20 @@ h1 {
 
 .ghost-class {
   background-color: #4c87af;
+}
+
+#empty-stack-button {
+  display: flex;
+  flex-flow: row nowrap ;
+  align-items: center;
+  width: 100%;
+  gap: 10px;
+  justify-content: center;
+  padding: 10px 20px;
+  border: none;
+  border-radius: 10px;
+  background-color: #af4c4c;
+  color: white;
+  font-weight: bold;
+  cursor: pointer;
 }
