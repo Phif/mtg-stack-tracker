@@ -147,5 +147,7 @@ function emptyCardContainer() {
 var el = document.getElementById('card-container');
 var sortable = new Sortable(el, {
   animation: 150,
-  ghostClass: 'ghost-class'
+  ghostClass: 'ghost-class',
+  delay: 100, 
+	delayOnTouchOnly: true
 });
