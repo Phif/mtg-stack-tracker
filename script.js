@@ -131,7 +131,9 @@ function createCardElement(cardData) {
       <h3 class="card-name">${cardData.name}</h3>
       <p class="card-oracle-text">${replaceManaSymbols(cardData.oracle_text)}</p>
     </div>
-    <button class="resolve-card-button" onclick="this.parentNode.remove()">Resolve</button>
+    <button class="resolve-card-button" onclick="this.parentNode.remove()">
+      <span class="material-symbols-rounded">check_circle</span>
+    </button>
   `;
   return cardElement;
 }
@@ -145,8 +147,14 @@ function replaceManaSymbols(text) {
   return text;
 }
 
+function emptyCardContainer() {
+  while (cardContainer.firstChild) {
+    cardContainer.removeChild(cardContainer.firstChild);
+  }
+}
+
 var el = document.getElementById('card-container');
 var sortable = new Sortable(el, {
   animation: 150,
-  ghostClass: 'blue-background-class'
+  ghostClass: 'ghost-class'
 });
