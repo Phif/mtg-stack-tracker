@@ -1,6 +1,8 @@
 const searchInput = document.getElementById('search-input');
 const searchButton = document.getElementById('search-button');
 const cardContainer = document.getElementById('card-container');
+let manaSymbols = {};
+let lastRequestTime = 0;
 
 // Autocomplete variables
 let autocompleteList = [];
@@ -11,11 +13,25 @@ searchButton.addEventListener('click', searchCard);
 searchInput.addEventListener('input', handleAutocomplete);
 document.addEventListener('click', clearAutocomplete);
 
+fetch('https://api.scryfall.com/symbology')
+.then(response => response.json())
+.then(data => {
+  manaSymbols = data.symbols;
+})
+.catch(error => {
+  console.error('Error fetching mana symbols:', error);
+});
+
 function searchCard() {
   const cardName = searchInput.value;
   if (cardName) {
-    fetchCard(cardName);
-    clearAutocomplete();
+    const currentTime = Date.now();
+    if (currentTime - lastRequestTime >= 100) { 
+      fetchCard(cardName);
+      lastRequestTime = currentTime;
+    } else {
+      console.log('Too many requests. Please wait before searching again.');
+    }
   }
 }
 
@@ -31,14 +47,14 @@ function handleAutocomplete() {
 function fetchAutocomplete(query) {
   const apiUrl = `https://api.scryfall.com/cards/autocomplete?q=${encodeURIComponent(query)}`;
   fetch(apiUrl)
-    .then(response => response.json())
-    .then(data => {
-      autocompleteList = data.data || [];
-      showAutocomplete();
-    })
-    .catch(error => {
-      console.error('Error:', error);
-    });
+  .then(response => response.json())
+  .then(data => {
+    autocompleteList = data.data || [];
+    showAutocomplete();
+  })
+  .catch(error => {
+    console.error('Error:', error);
+  });
 }
 
 function showAutocomplete() {
@@ -46,7 +62,7 @@ function showAutocomplete() {
   const autocompleteDropdown = document.createElement('div');
   autocompleteDropdown.setAttribute('class', 'autocomplete-items');
   searchInput.parentNode.appendChild(autocompleteDropdown);
-
+  
   autocompleteList.forEach((item, index) => {
     const autocompleteOption = document.createElement('div');
     autocompleteOption.innerHTML = `<strong>${item}</strong>`;
@@ -112,29 +128,29 @@ function removeActive(autocompleteOptions) {
 function fetchCard(cardName) {
   const apiUrl = `https://api.scryfall.com/cards/named?fuzzy=${encodeURIComponent(cardName)}`;
   fetch(apiUrl)
-    .then(response => response.json())
-    .then(data => {
-      const cardElement = createCardElement(data);
-      cardContainer.insertBefore(cardElement, cardContainer.firstChild);
-    })
-    .catch(error => {
-      console.error('Error:', error);
-    });
+  .then(response => response.json())
+  .then(data => {
+    const cardElement = createCardElement(data);
+    cardContainer.insertBefore(cardElement, cardContainer.firstChild);
+  })
+  .catch(error => {
+    console.error('Error:', error);
+  });
 }
 
 function createCardElement(cardData) {
   const cardElement = document.createElement('div');
   cardElement.className = 'card';
   cardElement.innerHTML = `
-    <img src="${cardData.image_uris.art_crop}" alt="${cardData.name}">
-    <div class="card-details">
-      <h3 class="card-name">${cardData.name}</h3>
-    </div>
-    <button class="resolve-card-button" onclick="this.parentNode.remove()">
-      <span class="material-symbols-rounded">check_circle</span>
-    </button>
+  <img src="${cardData.image_uris.art_crop}" alt="${cardData.name}">
+  <div class="card-details">
+  <h3 class="card-name">${cardData.name}</h3>
+  </div>
+  <button class="resolve-card-button" onclick="this.parentNode.remove()">
+  <span class="material-symbols-rounded">check_circle</span>
+  </button>
   `;
-
+  
   return cardElement;
 }
 
@@ -149,5 +165,5 @@ var sortable = new Sortable(el, {
   animation: 150,
   ghostClass: 'ghost-class',
   delay: 50, 
-	delayOnTouchOnly: true
+  delayOnTouchOnly: true
 });
