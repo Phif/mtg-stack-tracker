@@ -5,8 +5,21 @@
 }
 
 html {
+  --primary-color: #4CAF50;
+  --secondary-color: #4c87af;
+  --main-bg-color: #181e30;
+  --secondary-bg-color: #2c2c2c;
+  --main-text-color: #ffffff;
+  --secondary-text-color: #ffffff;
+  --main-border-color: #ccc;
+  --secondary-border-color: #ccc;
+  --main-button-color: #4CAF50;
+  --secondary-button-color: #4c87af;
+  --tertiary-button-color: #be3b3b;
+  --main-button-text-color: #ffffff;
+  --secondary-button-text-color: #ffffff;
   height: 100%;
-  color: white;
+  color: var(--main-text-color);
 }
 
 body {
@@ -14,7 +27,7 @@ body {
   max-width: 1200px;
   margin: 0 auto;
   padding: 0 20px;
-  background: rgb(24, 14, 48);
+  background: var(--main-bg-color);
   overscroll-behavior-y: none;
 }
 
@@ -30,7 +43,7 @@ h1 {
 
 #search-input {
   padding: 10px;
-  border-color: lightgray;
+  border-color: var(--main-border-color);
   border-radius: 10px;
   flex-grow: 1;
   margin-right: 10px;
@@ -45,7 +58,7 @@ h1 {
   padding: 10px;
   border: none;
   border-radius: 10px;
-  background-color: #4CAF50;
+  background-color: var(--main-button-color);
   color: white;
   font-weight: bold;
   cursor: pointer;
@@ -57,7 +70,7 @@ h1 {
   width: max-content;
   max-height: 200px;
   overflow-y: auto;
-  background-color: rgb(48, 47, 58);
+  background-color: var(--secondary-bg-color);
   border-radius: 10px;
   z-index: 1;
 }
@@ -70,7 +83,7 @@ h1 {
 
 .autocomplete-items div:hover,
 .autocomplete-items div.autocomplete-active {
-  background-color: #5c587a;
+  background-color: var(--secondary-color);
 }
 
 .search-container {
@@ -85,7 +98,7 @@ h1 {
   display: flex;
   align-items: center;
   gap: 10px;
-  border: 2px solid #ccc;
+  border: 2px solid var(--secondary-border-color);
   border-radius: 10px;
   margin-bottom: 10px;
   overflow: hidden;
@@ -125,14 +138,14 @@ h1 {
 .resolve-card-button {
   display: flex;
   align-self: stretch;
-  flex-flow: row nowrap ;
+  flex-flow: row nowrap;
   align-items: center;
   gap: 10px;
   justify-content: center;
   padding: 5px;
   border: none;
   border-radius: 0 10px 10px 0;
-  background-color: #4c87af;
+  background-color: var(--secondary-button-color);
   color: white;
   font-weight: bold;
   cursor: pointer;
@@ -144,7 +157,7 @@ h1 {
 }
 
 .ghost-class {
-  background-color: gray;
+  background-color: var(--secondary-bg-color);
 }
 
 #empty-stack-button {
@@ -157,7 +170,7 @@ h1 {
   padding: 10px 20px;
   border: none;
   border-radius: 10px;
-  background-color: #af4c4c;
+  background-color: var(--tertiary-button-color);
   color: white;
   font-weight: bold;
   cursor: pointer;
