@@ -183,3 +183,36 @@ h1 {
   font-weight: bold;
   cursor: pointer;
 }
+
+.full-card-modal {
+  display: flex;
+  flex-flow: column nowrap;
+  justify-content: flex-start;
+  align-items: center;
+  position: fixed;
+  gap: 10px;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background-color: rgba(0, 0, 0, 0.75);
+  z-index: 3;
+  overflow: scroll;
+  padding: 50px;
+}
+
+.full-card-image {
+  max-width: 80vw;
+  max-height: 80vh;
+}
+
+.rulings-container {
+  display: flex;
+  flex-flow: column nowrap;
+  gap: 10px;
+}
+
+.rulings {
+  max-width: 80vw;
+  text-align: left;
+}
