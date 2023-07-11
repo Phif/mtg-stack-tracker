@@ -1,3 +1,5 @@
+import CardElement from "./CardElement.js";
+
 export default class CardSearch {
     constructor() {
         this.searchInput = document.getElementById('search-input');
@@ -11,7 +13,6 @@ export default class CardSearch {
         this.searchButton.addEventListener('click', this.searchCard.bind(this));
         this.searchInput.addEventListener('input', this.handleAutocomplete.bind(this));
         document.addEventListener('click', this.clearAutocomplete.bind(this));
-        document.addEventListener('keydown', this.handleKeydown.bind(this));
         
         fetch('https://api.scryfall.com/symbology')
         .then(response => response.json())
@@ -26,13 +27,7 @@ export default class CardSearch {
     searchCard() {
         const cardName = this.searchInput.value;
         if (cardName) {
-            const currentTime = Date.now();
-            if (currentTime - this.lastRequestTime >= 100) {
-                this.fetchCard(cardName);
-                this.lastRequestTime = currentTime;
-            } else {
-                console.log('Too many requests. Please wait before searching again.');
-            }
+            this.fetchCard(cardName);
         }
     }
     
@@ -46,16 +41,24 @@ export default class CardSearch {
     }
     
     fetchAutocomplete(query) {
-        const apiUrl = `https://api.scryfall.com/cards/autocomplete?q=${encodeURIComponent(query)}`;
-        fetch(apiUrl)
-        .then(response => response.json())
-        .then(data => {
-            this.autocompleteList = data.data || [];
-            this.showAutocomplete();
-        })
-        .catch(error => {
-            console.error('Error:', error);
-        });
+        const currentTime = Date.now();
+        const elapsedTime = currentTime - this.lastRequestTime;
+        if (elapsedTime >= 100) {
+            const apiUrl = `https://api.scryfall.com/cards/autocomplete?q=${encodeURIComponent(query)}`;
+            fetch(apiUrl)
+            .then(response => response.json())
+            .then(data => {
+                this.autocompleteList = data.data || [];
+                this.showAutocomplete();
+            })
+            .catch(error => {
+                console.error('Error:', error);
+            });
+            
+            this.lastRequestTime = currentTime;
+        } else {
+            console.log('API request rate limit exceeded. Wait for some time before making another request.');
+        }
     }
     
     showAutocomplete() {
@@ -79,30 +82,6 @@ export default class CardSearch {
         const autocompleteDropdown = document.querySelector('.autocomplete-items');
         if (autocompleteDropdown) {
             autocompleteDropdown.parentNode.removeChild(autocompleteDropdown);
-        }
-    }
-    
-    handleKeydown(e) {
-        const autocompleteDropdown = document.querySelector('.autocomplete-items');
-        if (autocompleteDropdown) {
-            const autocompleteOptions = autocompleteDropdown.getElementsByTagName('div');
-            if (e.code === 'ArrowDown') {
-                // Arrow down key
-                this.currentFocus++;
-                this.addActive(autocompleteOptions);
-            } else if (e.code === 'ArrowUp') {
-                // Arrow up key
-                this.currentFocus--;
-                this.addActive(autocompleteOptions);
-            } else if (e.code === 'Enter') {
-                // Enter key
-                e.preventDefault();
-                if (this.currentFocus > -1) {
-                    if (autocompleteOptions) {
-                        autocompleteOptions[this.currentFocus].click();
-                    }
-                }
-            }
         }
     }
     
@@ -131,33 +110,11 @@ export default class CardSearch {
         fetch(apiUrl)
         .then(response => response.json())
         .then(data => {
-            const cardElement = this.createCardElement(data);
-            this.cardContainer.insertBefore(cardElement, this.cardContainer.firstChild);
+            const cardElement = new CardElement(data);
+            cardElement.create();
         })
         .catch(error => {
             console.error('Error:', error);
         });
-    }
-    
-    createCardElement(cardData) {
-        const cardElement = document.createElement('div');
-        cardElement.className = 'card';
-        cardElement.innerHTML = `
-        <img src="${cardData.image_uris.art_crop}" alt="${cardData.name}">
-        <div class="card-details">
-        <h3 class="card-name">${cardData.name}</h3>
-        </div>
-        <button class="resolve-card-button" onclick="this.parentNode.remove()">
-        <span class="material-symbols-rounded">check_circle</span>
-        </button>
-        `;
-        
-        return cardElement;
-    }
-    
-    emptyCardContainer() {
-        while (this.cardContainer.firstChild) {
-            this.cardContainer.removeChild(this.cardContainer.firstChild);
-        }
     }
 }
