@@ -135,6 +135,7 @@ h1 {
   align-self: stretch;
   background-color: var(--main-border-color);
   width: 20%;
+  min-width: 72px;
 }
 
 .duplicate-card-button {
