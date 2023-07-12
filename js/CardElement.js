@@ -7,6 +7,7 @@ export default class CardElement {
         this.cardArtCropped = cardData.image_uris.art_crop;
         this.cardArtFull = cardData.image_uris.png;
         this.uuid = this.uuidv4();
+        this.cardContainer = document.getElementById('card-container');
     }
     
     create() {
@@ -17,11 +18,12 @@ export default class CardElement {
         <h3 class="card-name">${this.cardName}</h3>
         </div>
         <div class="card-button-container">
-        <button class="duplicate-card-button" onclick="this.duplicate()"><span class="material-symbols-rounded">content_copy</span></button>
-        <button class="resolve-card-button" onclick="this.resolve()"><span class="material-symbols-rounded">check_circle</span></button>
+        <button class="duplicate-card-button"><span class="material-symbols-rounded">content_copy</span></button>
+        <button class="resolve-card-button"><span class="material-symbols-rounded">check_circle</span></button>
         </div>
         `;
-        document.getElementById('card-container').prepend(this.cardElement);
+        
+        this.show(this.cardElement);
         
         this.cardElement.querySelector('.duplicate-card-button').onclick = () => {
             this.duplicate();
@@ -67,7 +69,7 @@ export default class CardElement {
             .catch(error => {
                 console.error('Error:', error);
             });
-
+            
             
         }
         img.src = this.cardArtFull;
@@ -80,7 +82,7 @@ export default class CardElement {
     }
     
     resolve() {
-        this.cardElement.remove();
+        this.hide(this.cardElement)
     }
     
     duplicate() {
@@ -116,5 +118,27 @@ export default class CardElement {
         }
     }
     
+    show(element, duration = 300) {
+        element.style.opacity = 0;
+        element.style.transform = 'translateY(-100%)';
+        element.style.transition = `opacity ${duration}ms ease-in-out, transform ${duration}ms ease-in-out`;
+        this.cardContainer.prepend(this.cardElement);
+        setTimeout(() => {
+            element.style.opacity = 1;
+            element.style.transform = 'translateY(0)';
+        }, 100);
+    }
     
+    hide(element, duration = 300) {
+        element.style.opacity = 1;
+        element.style.transform = 'translateY(0)';
+        element.style.transition = `opacity ${duration}ms ease-in-out, transform ${duration}ms ease-in-out`;
+        setTimeout(() => {
+            element.style.opacity = 0;
+            // element.style.transform = 'translateY(-100%)';
+        }, 10);
+        setTimeout(() => {
+            element.remove();
+        }, duration);
+    }
 }

@@ -25,13 +25,19 @@
     <div class="search-container">
         <input type="text" id="search-input" placeholder="Enter card name">
         <button id="search-button">
-            <span class="material-symbols-rounded">add_circle</span>
+            <span class="material-symbols-rounded">library_add</span>
         </button>
     </div>
-    <div id="card-container"></div>
-    <button id="empty-stack-button" onclick="alert('Remove all casts and trigger on the stack?')">
-        <span class="material-symbols-rounded">delete_forever</span>
-        Empty stack
-    </button>
+    <main>
+        <!-- <button id="resolve-stack-button" onclick="alert('Begin resolving the current stack?')">
+            <span class="material-symbols-rounded">done_all</span>
+            Resolve stack
+        </button> -->
+        <div id="card-container"></div>
+        <button id="empty-stack-button" onclick="alert('Remove all casts and trigger on the stack?')">
+            <span class="material-symbols-rounded">delete_forever</span>
+            Empty stack
+        </button>
+    </main>
 </body>
 </html>

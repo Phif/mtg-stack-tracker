@@ -59,7 +59,7 @@ h1 {
   padding: 10px;
   border: none;
   border-radius: 10px;
-  background-color: var(--main-button-color);
+  background-color: var(--secondary-button-color);
   color: white;
   font-weight: bold;
   cursor: pointer;
@@ -87,12 +87,21 @@ h1 {
   background-color: var(--secondary-color);
 }
 
-.search-container {
-  margin-bottom: 20px;
+main {
+  display: flex;
+  flex-flow: column nowrap;
+  justify-content: flex-start;
+  align-items: center;
+  gap: 20px;
+  width: 100%;
 }
 
 #card-container {
-  margin-top: 20px;
+  display: flex;
+  flex-flow: column nowrap;
+  gap: 10px;
+  width: 100%;
+  overflow: hidden;
 }
 
 .card {
@@ -102,7 +111,6 @@ h1 {
   gap: 10px;
   background-color: var(--secondary-bg-color);
   border-radius: 10px;
-  margin-bottom: 10px;
   overflow: hidden;
 }
 
@@ -167,6 +175,22 @@ h1 {
 
 .ghost-class {
   background-color: var(--secondary-bg-color);
+}
+
+#resolve-stack-button {
+  display: flex;
+  flex-flow: row nowrap ;
+  align-items: center;
+  width: 100%;
+  gap: 10px;
+  justify-content: center;
+  padding: 10px 20px;
+  border: none;
+  border-radius: 10px;
+  background-color: var(--main-button-color);
+  color: white;
+  font-weight: bold;
+  cursor: pointer;
 }
 
 #empty-stack-button {
