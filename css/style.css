@@ -112,6 +112,7 @@ main {
   background-color: var(--secondary-bg-color);
   border-radius: 10px;
   overflow: hidden;
+  border: 2px dashed transparent;
 }
 
 .card:hover {
@@ -168,13 +169,9 @@ main {
   cursor: pointer;
 }
 
-.ms {
-  font-size: 0.8em !important;
-  transform: translate(0, -1px) !important;
-}
-
 .ghost-class {
   background-color: var(--secondary-bg-color);
+  border: 2px dashed var(--main-border-color);
 }
 
 #resolve-stack-button {
