@@ -18,8 +18,8 @@ export default class CardElement {
         <h3 class="card-name">${this.cardName}</h3>
         </div>
         <div class="card-button-container">
-        <button class="duplicate-card-button"><span class="material-symbols-rounded">content_copy</span></button>
-        <button class="resolve-card-button"><span class="material-symbols-rounded">check_circle</span></button>
+        <button class="duplicate-card-button"><span class="material-symbols-rounded">library_add</span></button>
+        <button class="resolve-card-button"><span class="material-symbols-rounded">done</span></button>
         </div>
         `;
         
