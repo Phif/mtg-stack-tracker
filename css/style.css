@@ -88,6 +88,43 @@ h1 {
   background-color: var(--secondary-color);
 }
 
+#base-icons-toggle {
+  display: flex;
+  flex-flow: row nowrap ;
+  align-items: center;
+  gap: 10px;
+  justify-content: center;
+  padding: 10px;
+  border: none;
+  border-radius: 10px;
+  background-color: var(--secondary-button-color);
+  color: white;
+  font-weight: bold;
+  cursor: pointer;
+}
+
+#base-icons-container {
+  display: flex;
+  flex-flow: row wrap;
+  justify-content: center;
+  gap: 5px
+}
+
+.base-icon-button {
+  display: flex;
+  flex-flow: row nowrap ;
+  align-items: center;
+  gap: 10px;
+  justify-content: center;
+  padding: 10px;
+  border: none;
+  border-radius: 10px;
+  background-color: var(--secondary-button-color);
+  color: white;
+  font-weight: bold;
+  cursor: pointer;
+}
+
 main {
   display: flex;
   flex-flow: column nowrap;
@@ -114,11 +151,17 @@ main {
   border-radius: 10px;
   overflow: hidden;
   border: 2px dashed transparent;
-  max-height: 72px;
+  height: 72px;
 }
 
 .card:hover {
   cursor: pointer;
+}
+
+.card-icon {
+  text-align: center;
+  width: 100%;
+  font-size: 48px !important;
 }
 
 .card img {
@@ -141,7 +184,6 @@ main {
   display: -webkit-box;
   -webkit-line-clamp: 3; /* Set the number of lines to display before adding ellipsis */
   -webkit-box-orient: vertical;
-
 }
 
 .card-oracle-text {

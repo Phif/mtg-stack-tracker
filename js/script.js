@@ -1,5 +1,8 @@
 import CardSearch from './CardSearch.js';
+import CardElement from './CardElement.js';
+import IconElement from './CardElementIcon.js';
 import sortable from './Sortable.js';
+import initBaseIcons from './initBaseIcons.js';
 
 const cardSearch = new CardSearch();
 
@@ -24,3 +27,5 @@ emptyStackButton.onclick = () => {
         }
     }
 }
+
+initBaseIcons();

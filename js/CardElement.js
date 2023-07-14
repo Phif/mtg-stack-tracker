@@ -6,12 +6,10 @@ export default class CardElement {
         this.cardName = cardData.name;
         this.cardArtCropped = cardData.image_uris.art_crop;
         this.cardArtFull = cardData.image_uris.png;
-        this.uuid = this.uuidv4();
         this.cardContainer = document.getElementById('card-container');
     }
     
     create() {
-        this.cardElement.dataset.uuid = this.uuid;
         this.cardElement.innerHTML = `
         <img class="card-art" src="${this.cardArtCropped}" alt="${this.cardName}">
         <div class="card-details">
@@ -89,13 +87,7 @@ export default class CardElement {
         let duplicate = new CardElement(this.cardData);
         duplicate.create();
     }
-    
-    uuidv4() {
-        return ([1e7]+-1e3+-4e3+-8e3+-1e11).replace(/[018]/g, c =>
-        (c ^ crypto.getRandomValues(new Uint8Array(1))[0] & 15 >> c / 4).toString(16)
-        );
-    }
-    
+
     async getCardRulings(cardName) {
         try {
             const response = await fetch(`https://api.scryfall.com/cards/named?fuzzy=${cardName}`);
