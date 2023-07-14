@@ -159,8 +159,8 @@ main {
 }
 
 .card-icon {
+  flex-grow: 1;
   text-align: center;
-  width: 100%;
   font-size: 48px !important;
 }
 
