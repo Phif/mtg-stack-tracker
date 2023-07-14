@@ -48,6 +48,7 @@ h1 {
   border-radius: 10px;
   flex-grow: 1;
   margin-right: 10px;
+  text-overflow: ellipsis;
 }
 
 #search-button {
@@ -113,6 +114,7 @@ main {
   border-radius: 10px;
   overflow: hidden;
   border: 2px dashed transparent;
+  max-height: 72px;
 }
 
 .card:hover {
@@ -122,6 +124,7 @@ main {
 .card img {
   max-width: 100px;
   height: auto;
+  border-radius: 10px;
 }
 
 .card-details {
@@ -129,8 +132,16 @@ main {
 }
 
 .card-name {
+  max-height: 72px;
   font-weight: bold;
   margin: 0;
+  word-break: break-word;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  display: -webkit-box;
+  -webkit-line-clamp: 3; /* Set the number of lines to display before adding ellipsis */
+  -webkit-box-orient: vertical;
+
 }
 
 .card-oracle-text {
