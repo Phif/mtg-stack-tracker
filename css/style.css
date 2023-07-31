@@ -170,10 +170,6 @@ main {
   border-radius: 10px;
 }
 
-.card-details {
-  flex-grow: 1;
-}
-
 .card-name {
   max-height: 72px;
   font-weight: bold;
@@ -184,11 +180,7 @@ main {
   display: -webkit-box;
   -webkit-line-clamp: 3; /* Set the number of lines to display before adding ellipsis */
   -webkit-box-orient: vertical;
-}
-
-.card-oracle-text {
-  margin: 0;
-  text-overflow: ellipsis;
+  text-align: center;
 }
 
 .card-button-container {
@@ -196,8 +188,6 @@ main {
   flex-flow: row nowrap;
   align-self: stretch;
   background-color: var(--main-border-color);
-  width: 20%;
-  min-width: 72px;
 }
 
 .duplicate-card-button {
@@ -205,6 +195,7 @@ main {
   flex: 1 1 0;
   justify-content: center;
   align-items: center;
+  padding: 10px;
   border: none;
   background-color: var(--secondary-button-color);
   color: white;
@@ -217,6 +208,7 @@ main {
   justify-content: center;
   align-items: center;
   border: none;
+  padding: 10px;
   background-color: var(--main-button-color);
   color: white;
   cursor: pointer;

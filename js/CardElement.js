@@ -12,9 +12,7 @@ export default class CardElement {
     create() {
         this.cardElement.innerHTML = `
         <img class="card-art" src="${this.cardArtCropped}" alt="${this.cardName}">
-        <div class="card-details">
         <h3 class="card-name">${this.cardName}</h3>
-        </div>
         <div class="card-button-container">
         <button class="duplicate-card-button"><span class="material-symbols-rounded">library_add</span></button>
         <button class="resolve-card-button"><span class="material-symbols-rounded">done</span></button>
